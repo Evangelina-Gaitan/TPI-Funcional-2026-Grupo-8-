@@ -21,3 +21,21 @@ Requerimiento 1.
        (t (list color-actual 'accion-por-defecto))))
 
 
+Requerimiento 2.
+
+; FUNCION: timer
+; NATURALEZA: Pura 
+; ESTRATEGIA: Condicional simple
+; IMPACTO: No destructiva
+
+
+(defun timer (timestamp)
+  (let* ((tiempo-rojo 90)
+         (tiempo-amarillo 6)
+         (tiempo-verde 120)
+         (tiempo-total (+ tiempo-rojo tiempo-amarillo tiempo-verde))
+         (posicion-ciclo (mod timestamp tiempo-total)))
+    (cond
+      ((< posicion-ciclo tiempo-rojo) 'rojo)
+      ((< posicion-ciclo (+ tiempo-rojo tiempo-amarillo)) 'amarillo)
+      (t 'verde))))
