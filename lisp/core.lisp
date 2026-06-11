@@ -22,7 +22,7 @@
 
 
 ;Requerimiento 2.
-========================================================
+;========================================================
 ;; FUNCION: timer
 ;; NATURALEZA: Pura 
 ;; ESTRATEGIA: Condicional simple
