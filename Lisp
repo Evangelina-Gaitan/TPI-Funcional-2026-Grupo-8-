@@ -55,3 +55,32 @@
           color-nuevo)
     'registro-Guardado)  ; NIL
 
+; Requerimiento 4
+; ========================================================
+;; FUNCIÓN: duracion-ciclo
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Aritmética 
+;; IMPACTO: No destructiva
+; ========================================================
+
+(defun duracion-ciclo (tiempo-rojo tiempo-amarillo tiempo-verde)
+  (+ tiempo-rojo tiempo-amarillo tiempo-verde))
+
+;Requerimiento 4b.
+;========================================================
+;; FUNCION: recomendacion-ciclo
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Condicional simple
+;; IMPACTO: No destructiva
+;========================================================
+
+(defun recomendacion-ciclo (duracion)
+  (cond
+    ((< duracion 35)
+     "Ciclo demasiado corto. Se recomienda aumentarlo.")
+
+    ((> duracion 150)
+     "Ciclo demasiado largo. Se recomienda reducirlo.")
+
+    (t
+     "Ciclo dentro del rango óptimo.")))
