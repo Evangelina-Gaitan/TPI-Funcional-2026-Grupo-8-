@@ -84,3 +84,20 @@
 
     (t
      "Ciclo dentro del rango óptimo.")))
+
+
+
+ ; Requerimiento 6.
+; ========================================================
+; FUNCIÓN: distribucion-porcentual
+; NATURALEZA: Pura (Siempre devuelve la misma distribución para las mismas reglas de temporización)
+; ESTRATEGIA: Aritmética simple
+; IMPACTO: No destructiva
+; ========================================================
+
+(defun distribucion-porcentual (rojo amarillo verde)
+  (let ((total (+ rojo amarillo verde)))
+    (list
+     (list 'porcentaje-rojo (* (/ rojo total) 100.0))
+     (list 'porcentaje-amarillo (* (/ amarillo total) 100.0))
+     (list 'porcentaje-verde (* (/ verde total) 100.0)))))
