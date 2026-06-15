@@ -121,5 +121,60 @@
 ;;----------------------------------------------------------------------
 ;; ITERACION 2 
 
+;;========================================================
+;; FUNCIÓN: registrarEstadoLuces
+;; NATURALEZA: Impura
+;; ESTRATEGIA: Secuencial 
+;; IMPACTO: No destructiva
+;;========================================================
+
+(defun registrarEstadoLuces (timestamp color-anterior color-nuevo)
+
+  (format t
+          "Tiempo ~A: la luz ha cambiado de ~A a ~A~%"
+          timestamp
+          color-anterior
+          color-nuevo)
+
+  'registro-guardado)
+
+;;========================================================
+;; FUNCIÓN: duracion-ciclo
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Aritmetica 
+;; IMPACTO: No destructiva
+;;========================================================
+
+(defun duracion-ciclo (tiempo-rojo tiempo-amarillo tiempo-verde)
+  (+ tiempo-rojo tiempo-amarillo tiempo-verde 9)
+)
+
+;;===========================================
+;; FUNCIÓN: informe
+;; NATURALEZA: Impura
+;; ESTRATEGIA: Secuencial + Recursividad
+;; IMPACTO: No destructiva
+;;============================================
+
+(defun informe (datos)
+
+  (with-open-file (stream
+                   "informe-ejecucion-semaforos.txt"
+                   :direction :output
+                   :if-exists :supersede)
+
+    (format stream "Informe de Ejecución del Sistema Semafórico~%")
+    (format stream "=========================================~%")
+
+    (escribir-registros datos stream)
+
+    (format stream "~%--- Fin del Informe ---"))
+
+  'informe-generado)
+
+;;(ql:quickload :local-time)
+;;(informe '((100 rojo verde) (220 verde amarillo)(226 amarillo rojo)))
+
+
 
 
