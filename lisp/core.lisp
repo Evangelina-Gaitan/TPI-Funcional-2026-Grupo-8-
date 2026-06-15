@@ -225,6 +225,66 @@
 (defun duracion-ciclo (tiempo-rojo tiempo-amarillo tiempo-verde)
   (+ tiempo-rojo tiempo-amarillo tiempo-verde 9)
 )
+;;========================================================
+;; FUNCIÓN: recomendacion-ciclo
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Condicional Simple 
+;; IMPACTO: No destructiva
+;;========================================================
+
+(defun recomendacion-ciclo (duracion)
+
+  (cond
+    ((< duracion 35)
+     "Ciclo demasiado corto. Se recomienda aumentarlo.")
+
+    ((> duracion 150)
+     "Ciclo demasiado largo. Se recomienda reducirlo.")
+
+    (t
+     "Ciclo dentro del rango óptimo.")))
+
+;;========================================================
+;; FUNCIÓN: ciclos-por-tiempo
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Aritmetica
+;; IMPACTO: No destructiva
+;;========================================================
+
+(defun ciclos-por-tiempo (minutos)
+  (nth-value 0 (floor (* minutos 60) 225)))
+
+;;========================================================
+;; FUNCIÓN: distribucion-porcentual
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Aritmetica
+;; IMPACTO: No destructiva
+;;========================================================
+  
+(defun distribucion-porcentual (rojo amarillo verde)
+
+  (let ((total (+ rojo amarillo verde 9)))
+
+    (list
+
+      (list 'porcentaje-rojo
+            (* (/ rojo total) 100.0))
+
+      (list 'porcentaje-rojo-intermitente
+            (* (/ 3 total) 100.0))
+
+      (list 'porcentaje-amarillo
+            (* (/ amarillo total) 100.0))
+
+      (list 'porcentaje-amarillo-intermitente
+            (* (/ 3 total) 100.0))
+
+      (list 'porcentaje-verde
+            (* (/ verde total) 100.0))
+
+      (list 'porcentaje-verde-intermitente
+            (* (/ 3 total) 100.0)))))
+
 
 ; ========================================================
 ; EXTENSIÓN 2 - Persistencia de Datos
