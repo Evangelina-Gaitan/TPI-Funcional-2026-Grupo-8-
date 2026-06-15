@@ -1,10 +1,10 @@
-;Requerimiento 1.
-;========================================================
-; FUNCIÓN: transicion
-; NATURALEZA: Pura (No tiene efectos secundarios, siempre retorna la misma salida para las mismas entradas)
-; ESTRATEGIA: Condicional simple y Función Predicado
-; IMPACTO: No destructiva
-;========================================================
+;;Requerimiento 1.
+;;========================================================
+;; FUNCIÓN: transicion
+;; NATURALEZA: Pura (No tiene efectos secundarios, siempre retorna la misma salida para las mismas entradas)
+;; ESTRATEGIA: Condicional simple y Función Predicado
+;; IMPACTO: No destructiva
+;;========================================================
 
 (defun transicion (color-actual cambiar-a)
  (cond
@@ -22,13 +22,13 @@
 )
 
 
-;Requerimiento 2.
-;========================================================
+;;Requerimiento 2.
+;;========================================================
 ;; FUNCION: timer
 ;; NATURALEZA: Pura 
 ;; ESTRATEGIA: Condicional simple
 ;; IMPACTO: No destructiva
-;========================================================
+;;========================================================
 
 (defun timer (timestamp)
   (let* ((tiempo-rojo 90)
@@ -122,17 +122,17 @@
 ;; ITERACION 2 
 ;; EXTENSION 1
 
-;Intermitencia de 3 segundos entre los cambios de luces
+;;Intermitencia de 3 segundos entre los cambios de luces
 
-;ROJO (90 s)-> ROJO-INTERMITENTE (3 s) -> VERDE (120 s) -> VERDE-INTERMITENTE (3 s) -> AMARILLO (6 s) -> AMARILLO-INTERMITENTE (3 s) -> ROJO
+;;ROJO (90 s)-> ROJO-INTERMITENTE (3 s) -> VERDE (120 s) -> VERDE-INTERMITENTE (3 s) -> AMARILLO (6 s) -> AMARILLO-INTERMITENTE (3 s) -> ROJO
 ;Total = 225 segundos  
 
-;========================================================
-; FUNCIÓN: transicion
-; NATURALEZA: Pura (No tiene efectos secundarios, siempre retorna la misma salida para las mismas entradas)
-; ESTRATEGIA: Condicional simple y Función Predicado
-; IMPACTO: No destructiva
-;========================================================
+;;========================================================
+;; FUNCIÓN: transicion
+;; NATURALEZA: Pura (No tiene efectos secundarios, siempre retorna la misma salida para las mismas entradas)
+;; ESTRATEGIA: Condicional simple y Función Predicado
+;; IMPACTO: No destructiva
+;;========================================================
 
 (defun transicion (color-actual cambiar-a)
 
@@ -166,12 +166,12 @@
   )
 )
 
-;========================================================
-; FUNCIÓN: timer
-; NATURALEZA: Pura 
-; ESTRATEGIA: Condicional simple 
-; IMPACTO: No destructiva
-;========================================================
+;;========================================================
+;; FUNCIÓN: timer
+;; NATURALEZA: Pura 
+;; ESTRATEGIA: Condicional simple 
+;; IMPACTO: No destructiva
+;;========================================================
 
 (defun timer (timestamp)
 
