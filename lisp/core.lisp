@@ -118,6 +118,84 @@
   )
 )
 
+ ;EXTENSION 1
+
+;Intermitencia de 3 segundos entre los cambios de luces
+
+;ROJO (90 s)-> ROJO-INTERMITENTE (3 s) -> VERDE (120 s) -> VERDE-INTERMITENTE (3 s) -> AMARILLO (6 s) -> AMARILLO-INTERMITENTE (3 s) -> ROJO
+;Total = 225 segundos  
+
+;========================================================
+; FUNCIÓN: transicion
+; NATURALEZA: Pura (No tiene efectos secundarios, siempre retorna la misma salida para las mismas entradas)
+; ESTRATEGIA: Condicional simple y Función Predicado
+; IMPACTO: No destructiva
+;========================================================
+
+(defun transicion (color-actual cambiar-a)
+
+  (cond
+
+    ((and (eq color-actual 'en-rojo)
+          (eq cambiar-a 'rojo-intermitente))
+     (list color-actual "cambiar-a-rojo-intermitente"))
+
+    ((and (eq color-actual 'en-rojo-intermitente)
+          (eq cambiar-a 'verde))
+     (list color-actual "cambiar-a-verde"))
+
+    ((and (eq color-actual 'en-verde)
+          (eq cambiar-a 'verde-intermitente))
+     (list color-actual "cambiar-a-verde-intermitente"))
+
+    ((and (eq color-actual 'en-verde-intermitente)
+          (eq cambiar-a 'amarillo))
+     (list color-actual "cambiar-a-amarillo"))
+
+    ((and (eq color-actual 'en-amarillo)
+          (eq cambiar-a 'amarillo-intermitente))
+     (list color-actual "cambiar-a-amarillo-intermitente"))
+
+    ((and (eq color-actual 'en-amarillo-intermitente)
+          (eq cambiar-a 'rojo))
+     (list color-actual "cambiar-a-rojo"))
+
+    (t (list color-actual 'accion-por-defecto))
+  )
+)
+
+;========================================================
+; FUNCIÓN: timer
+; NATURALEZA: Pura 
+; ESTRATEGIA: Condicional simple 
+; IMPACTO: No destructiva
+;========================================================
+
+(defun timer (timestamp)
+
+  (let* ( (intermitencia 3)
+          (tiempo-rojo 90)
+          (tiempo-verde 120)
+          (tiempo-amarillo 6)
+
+          (base (+ tiempo-rojo tiempo-verde tiempo-amarillo))
+          (tiempo-total (+ base (* 3 intermitencia)))
+
+          (posicion-ciclo (mod timestamp tiempo-total))
+        )
+
+    (cond
+      ((< posicion-ciclo tiempo-rojo) 'rojo)
+     
+      ((< posicion-ciclo (+ tiempo-rojo intermitencia)) 'rojo-intermitente)
+      ((< posicion-ciclo (+ tiempo-rojo intermitencia tiempo-verde)) 'verde)
+      ((< posicion-ciclo (+ tiempo-rojo intermitencia tiempo-verde intermitencia)) 'verde-intermitente)
+      ((< posicion-ciclo (+ tiempo-rojo intermitencia tiempo-verde intermitencia tiempo-amarillo)) 'amarillo)
+      (t 'amarillo-intermitente)
+    )
+  )
+)
+
 ;;----------------------------------------------------------------------
 ;; ITERACION 2 
 
@@ -148,6 +226,36 @@
 (defun duracion-ciclo (tiempo-rojo tiempo-amarillo tiempo-verde)
   (+ tiempo-rojo tiempo-amarillo tiempo-verde 9)
 )
+
+; ========================================================
+; EXTENSIÓN 2 - Persistencia de Datos
+; ========================================================
+
+;=========================================
+; FUNCIÓN: escribir-registros
+; NATURALEZA: Impura
+; ESTRATEGIA: Recursividad
+; IMPACTO: No destructiva
+;=========================================
+
+(defun escribir-registros (datos stream)
+  (cond
+    ((null datos) nil)
+
+    (t
+      (format stream
+              "A - Transicion: ~A -> ~A%"
+              (local-time:format-timestring
+               nil
+               (local-time:now)
+               :format '(:year "-" (:month 2) "-" 
+               (:day 2) " " (:hour 2) ":" (:min 2) ":" (:sec 2)))
+              (second (first datos))
+              (third (first datos))) 
+
+      (escribir-registros
+       (rest datos)
+       stream))))
 
 ;;===========================================
 ;; FUNCIÓN: informe
