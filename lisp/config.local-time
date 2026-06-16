@@ -1,7 +1,0 @@
-Entrar a quicklisp.org --> Installation --> quicklisp.lisp
-
-Entrar a donde se descargo, copiar su ubicacion de carpeta
-Desde clisp (ctrol + h) colocar (load "C:/ruta/donde/guardaste/quicklisp.lisp")
-(quicklisp-quickstart:install)
-(ql:add-to-init-file)
-(ql:quickload :local-time)
