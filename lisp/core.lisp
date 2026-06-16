@@ -118,6 +118,7 @@
   )
 )
 
+;;////////////////////////////////////////////////////////////////////////////////////////////////
 ;;----------------------------------------------------------------------
 ;; ITERACION 2 
 ;; EXTENSION 1
@@ -285,7 +286,7 @@
       (list 'porcentaje-verde-intermitente
             (* (/ 3 total) 100.0)))))
 
-
+;;//////////////////////////////////////////////////////////////////////////////////////
 ; ========================================================
 ; EXTENSIÓN 2 - Persistencia de Datos
 ; ========================================================
@@ -339,9 +340,58 @@
 
   'informe-generado)
 
-;;(ql:quickload :local-time)
+;;(ql:quickload :local-time)   //necesario 
 ;;(informe '((100 rojo verde) (220 verde amarillo)(226 amarillo rojo)))
 
 
+;;ACLARACION, El requerimiento 7 esta como consigna en el sistema de Semaforos Inteligentes
+;;lo colocamos para el debido control de funcionamiento.
+; ========================================================
+;;Requerimiento 7 - Casos de prueba, caso de control
+; ========================================================
+;;Iteracion 1
 
+;; 1) (transicion 'en-rojo 'verde) 
+;; 2) (timer 0) (timer 150) (timer 215)
+;; 3) (registrarEstadoLuces 123456 'rojo  'verde) (registrarEstadoLuces 987654 'verde 'amarillo) 
+;; 4) a-     (duracion-ciclo 90 6 120)       b- (recomendacion-ciclo 100)
+;; 5) (ciclos-por-tiempo 18)
+;; 6) (distribucion-porcentual 90 6 120)
+
+;;-------------------------------------------------------
+;;Iteracion 2 extension 1
+
+;; Requerimiento 1 caso de exito
+;; (transicion 'en-rojo 'rojo-intermitente)
+;; (transicion 'en-rojo-intermitente 'verde)
+
+;; alternativa, (transicion 'en-rojo 'verde)
+
+;;error, (transicion) o (transicion 123 'verde)
+
+;;requerimiento 2
+
+;; Caso de exito, (timer 89) (timer 222) (timer 93)
+;; alternativa, (timer 225) (timer 450)
+;; error, (timer 'tres) (timer nil)
+
+;;requerimiento 3
+;; Caso de exito, (registrarEstadoLuces 93 'rojo-intermitente 'verde)
+;; alternativa, (registrarEstadoLuces "01:30 AM" 'Desconocido 'Rojo)
+;; error,  (registrarEstadoLuces 10 'rojo)
+
+;;requerimiento 4
+;; Caso de exito, 4a (duracion-ciclo 90 6 120)  4b (recomendacion-ciclo 100) 
+;; alternativa, (recomendacion-ciclo 20) o (recomendacion-ciclo (duracion-ciclo 90 6 120))
+;; error, (recomendacion-ciclo "cien") o (duracion-ciclo)
+
+;;requerimiento 5
+;; caso de exito, (ciclos-por-tiempo 60) o (ciclos-por-tiempo 120)
+;; alternativa, (ciclos-por-tiempo 3.75) o (ciclos-por-tiempo 2)
+;; error, (ciclos-por-tiempo 'una-hora)
+
+;;requerimiento 6
+;; caso de exito, (distribucion-porcentual 90 6 120)
+;; alternativa, (distribucion-porcentual 30 5 200) mucho tiempo a determinada luz
+;; error, (distribucion-porcentual 0 0 0)
 
