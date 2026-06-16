@@ -1,6 +1,7 @@
 # TPI Functional 2026 - Grupo 8 
 
-<img width="870" height="366" alt="image" src="https://github.com/user-attachments/assets/9c994578-66e4-4170-8527-abdbf9f188f6" />
+<img width="864" height="367" alt="image" src="https://github.com/user-attachments/assets/1188f449-f12d-4fad-b554-663e6380b752" />
+
 
 
 
